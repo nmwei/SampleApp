@@ -7,6 +7,39 @@
 
 #import "ViewController.h"
 
+
+@interface TestView : UIView
+@end
+
+
+@implementation TestView
+-(instancetype) init{
+    self = [super init]; //1. 初始化
+    if(self) {
+        
+    }
+    return self;
+}
+- (void)willMoveToSuperview:(nullable UIView *)newSuperview{
+    [super willMoveToSuperview: newSuperview]; //2. 将要被添加到父视图
+};
+
+- (void)didMoveToSuperview{
+    [super didMoveToSuperview]; //3. 已经添加到父视图
+};
+
+- (void)willMoveToWindow:(nullable UIWindow *)newWindow{
+    [super willMoveToWindow: newWindow]; //4. 将要添加到窗体
+};
+
+- (void)didMoveToWindow{
+    [super didMoveToWindow]; //5. 已经添加到窗体
+};
+
+@end
+
+
+
 @interface ViewController ()
 
 @end
@@ -16,15 +49,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UIView *view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    
+    TestView *view = [[TestView alloc] init];
+    view.backgroundColor = [UIColor greenColor];
     view.frame = CGRectMake(100, 100, 100, 100);
     [self.view addSubview:view];
     
-    UIView *view2 = [[UIView alloc] init];
-    view2.backgroundColor = [UIColor blueColor];
-    view2.frame = CGRectMake(150, 150, 100, 100);
-    [self.view addSubview:view2];
+    
+    
 }
 
 
