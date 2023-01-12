@@ -6,6 +6,7 @@
 //
 
 #import "SceneDelegate.h"
+#import "ViewController.h"
 
 @interface SceneDelegate ()
 
@@ -18,6 +19,37 @@
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+    
+    //self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen] bounds]]
+    
+    UIWindowScene *windowScene = (UIWindowScene *)scene;
+    self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
+    self.window.frame = windowScene.coordinateSpace.bounds;
+    
+    UITabBarController *tabbarController = [[UITabBarController alloc] init];
+    
+    UIViewController *controller1 = [[ViewController alloc] init];
+    controller1.view.backgroundColor = [UIColor redColor];
+    controller1.tabBarItem.title = @"新闻";
+    
+    UIViewController *controller2 = [[UIViewController alloc] init];
+    controller2.view.backgroundColor = [UIColor yellowColor];
+    controller2.tabBarItem.title = @"视频";
+    
+    UIViewController *controller3 = [[UIViewController alloc] init];
+    controller3.view.backgroundColor = [UIColor blueColor];
+    controller3.tabBarItem.title = @"推荐";
+    
+    UIViewController *controller4 = [[UIViewController alloc] init];
+    controller4.view.backgroundColor = [UIColor greenColor];
+    controller4.tabBarItem.title = @"我的";
+    
+    // 将四个页面的 UIViewController 加入到 UITabBarController 之中
+    [tabbarController setViewControllers: @[controller1, controller2, controller3, controller4]];
+    
+    self.window.rootViewController = tabbarController;
+    
+    [self.window makeKeyAndVisible];
 }
 
 
