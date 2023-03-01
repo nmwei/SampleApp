@@ -16,40 +16,55 @@
 
 
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
-    // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-    // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-    // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
     
-    //self.window = [[[UIWindow alloc] initWithFrame:[UIScreen mainScreen] bounds]]
-    
-    UIWindowScene *windowScene = (UIWindowScene *)scene;
-    self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
-    self.window.frame = windowScene.coordinateSpace.bounds;
-    
-    UITabBarController *tabbarController = [[UITabBarController alloc] init];
-    
-    UIViewController *controller1 = [[ViewController alloc] init];
-    controller1.view.backgroundColor = [UIColor redColor];
-    controller1.tabBarItem.title = @"新闻";
-    
-    UIViewController *controller2 = [[UIViewController alloc] init];
-    controller2.view.backgroundColor = [UIColor yellowColor];
-    controller2.tabBarItem.title = @"视频";
-    
-    UIViewController *controller3 = [[UIViewController alloc] init];
-    controller3.view.backgroundColor = [UIColor blueColor];
-    controller3.tabBarItem.title = @"推荐";
-    
-    UIViewController *controller4 = [[UIViewController alloc] init];
-    controller4.view.backgroundColor = [UIColor greenColor];
-    controller4.tabBarItem.title = @"我的";
-    
+    UIViewController *c1 = [[UIViewController alloc] init];
+    c1.view.backgroundColor = [UIColor redColor];
+    c1.title = @"新闻";
+ 
+    UIViewController *c2 = [[UIViewController alloc] init];
+    c2.view.backgroundColor = [UIColor yellowColor];
+    c2.title = @"视频";
+ 
+    UIViewController *c3 = [[UIViewController alloc] init];
+    c3.view.backgroundColor = [UIColor blueColor];
+    c3.title = @"推荐";
+ 
+    UIViewController *c4 = [[UIViewController alloc] init];
+    c4.view.backgroundColor = [UIColor greenColor];
+    c4.title = @"我的";
+ 
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
     // 将四个页面的 UIViewController 加入到 UITabBarController 之中
-    [tabbarController setViewControllers: @[controller1, controller2, controller3, controller4]];
-    
-    self.window.rootViewController = tabbarController;
-    
-    [self.window makeKeyAndVisible];
+    [tabBarController setViewControllers: @[c1, c2, c3, c4]];
+     
+    // 自定义UITabBar的外观和行为
+    UITabBar *tabBar = tabBarController.tabBar;
+    tabBar.tintColor = [UIColor redColor]; // 选中状态颜色
+    tabBar.unselectedItemTintColor = [UIColor grayColor]; // 非选中状态颜色
+    tabBar.barTintColor = [UIColor whiteColor]; // 背景色
+    tabBar.translucent = NO; // 不透明
+    tabBar.layer.shadowColor = [UIColor blackColor].CGColor; // 阴影色
+    tabBar.layer.shadowOffset = CGSizeMake(0, -2); // 阴影偏移量
+    tabBar.layer.shadowRadius = 4; // 阴影半径
+    tabBar.layer.shadowOpacity = 0.3; // 阴影透明度
+
+    if (@available(iOS 15.0, *)) {
+        UITabBarAppearance *appearance = [[UITabBarAppearance alloc] init];
+        // 设置选中和非选中状态颜色
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor redColor]};
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor grayColor]};
+        // 设置背景色和不透明
+        appearance.backgroundColor = [UIColor whiteColor];
+        // 设置阴影
+        appearance.shadowColor = [UIColor blackColor];
+        // 应用到UITabBar实例
+        UITabBar *tabBar = tabBarController.tabBar;
+        tabBar.standardAppearance = appearance;
+        tabBar.scrollEdgeAppearance = appearance;
+    }
+     
+    self.window.rootViewController = tabBarController; //将UITabBarController设置为Window的RootViewController
+    [self.window makeKeyAndVisible]; // 显示Window
 }
 
 
