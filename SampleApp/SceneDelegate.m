@@ -16,30 +16,11 @@
 
 
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
-    
-    
-    ViewController *v1 = [[ViewController alloc] init];
-    UINavigationController *n1 = [[UINavigationController alloc] initWithRootViewController: v1];
-    
-    
-    if (@available(iOS 15.0, *)) {
-        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
-        appearance.backgroundColor = [UIColor blueColor]; //背景颜色
 
-        appearance.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20],NSForegroundColorAttributeName:[UIColor whiteColor]}; //字体样式
-
-        //按钮样式
-        UIBarButtonItemAppearance *doneAppearance = [[UIBarButtonItemAppearance alloc] init];
-        doneAppearance.normal.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:[UIColor whiteColor]};
-        appearance.doneButtonAppearance = doneAppearance;
-        
-        n1.navigationBar.standardAppearance = appearance;
-        n1.navigationBar.scrollEdgeAppearance = appearance;
-    }
     
-
-    n1.view.backgroundColor = [UIColor redColor];
-    n1.tabBarItem.title = @"新闻";
+    ViewController *c1 = [[ViewController alloc] init];
+    c1.view.backgroundColor = [UIColor yellowColor];
+    c1.tabBarItem.title = @"视频";
  
     UIViewController *c2 = [[UIViewController alloc] init];
     c2.view.backgroundColor = [UIColor yellowColor];
@@ -55,7 +36,7 @@
  
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     // 将一个UINavigationController和三个 UIViewController 加入到 UITabBarController 之中
-    [tabBarController setViewControllers: @[n1, c2, c3, c4]];
+    [tabBarController setViewControllers: @[c1, c2, c3, c4]];
      
     // 自定义UITabBar的外观和行为
     UITabBar *tabBar = tabBarController.tabBar;
@@ -82,8 +63,27 @@
         tabBar.standardAppearance = appearance;
         tabBar.scrollEdgeAppearance = appearance;
     }
+    
+    UINavigationController *n1 = [[UINavigationController alloc] initWithRootViewController: tabBarController];
+    n1.view.backgroundColor = [UIColor redColor];
+    n1.tabBarItem.title = @"新闻";
+    
+    if (@available(iOS 15.0, *)) {
+        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
+        appearance.backgroundColor = [UIColor blueColor]; //背景颜色
+
+        appearance.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20],NSForegroundColorAttributeName:[UIColor whiteColor]}; //字体样式
+
+        //按钮样式
+        UIBarButtonItemAppearance *doneAppearance = [[UIBarButtonItemAppearance alloc] init];
+        doneAppearance.normal.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:16],NSForegroundColorAttributeName:[UIColor whiteColor]};
+        appearance.doneButtonAppearance = doneAppearance;
+        
+        n1.navigationBar.standardAppearance = appearance;
+        n1.navigationBar.scrollEdgeAppearance = appearance;
+    }
      
-    self.window.rootViewController = tabBarController; //将UITabBarController设置为Window的RootViewController
+    self.window.rootViewController = n1; //将UITabBarController设置为Window的RootViewController
     [self.window makeKeyAndVisible]; // 显示Window
 }
 
