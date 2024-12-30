@@ -8,7 +8,7 @@
 #import "SceneDelegate.h"
 #import "ViewController.h"
 
-@interface SceneDelegate ()
+@interface SceneDelegate ()<UITabBarControllerDelegate>
 
 @end
 
@@ -37,6 +37,8 @@
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     // 将一个UINavigationController和三个 UIViewController 加入到 UITabBarController 之中
     [tabBarController setViewControllers: @[c1, c2, c3, c4]];
+    
+    tabBarController.delegate = self;   // 表示当前对象执行tabBarController的delegate方法
      
     // 自定义UITabBar的外观和行为
     UITabBar *tabBar = tabBarController.tabBar;
@@ -85,6 +87,10 @@
      
     self.window.rootViewController = n1; //将UITabBarController设置为Window的RootViewController
     [self.window makeKeyAndVisible]; // 显示Window
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    NSLog(@"did selected");
 }
 
 
