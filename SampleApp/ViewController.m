@@ -6,7 +6,7 @@
 //
 #import "ViewController.h"
 
-@interface ViewController ()<UITableViewDataSource>
+@interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -20,8 +20,19 @@
     UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     
     tableView.dataSource = self;
+    tableView.delegate = self;
     [self.view addSubview: tableView];
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIViewController *controller = [[UIViewController alloc] init];
+    controller.title = [NSString stringWithFormat:@"%@", @(indexPath.row)];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 
