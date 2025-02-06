@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F1B4C142D54854E0067388F /* GTVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B4C132D54854E0067388F /* GTVideoViewController.m */; };
+		4F1B4C172D54ADEA0067388F /* GTRecommendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B4C162D54ADEA0067388F /* GTRecommendViewController.m */; };
 		4FB496332923C3E200F97211 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB496322923C3E200F97211 /* AppDelegate.m */; };
 		4FB496362923C3E200F97211 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB496352923C3E200F97211 /* SceneDelegate.m */; };
 		4FB496392923C3E200F97211 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB496382923C3E200F97211 /* ViewController.m */; };
@@ -20,6 +21,8 @@
 /* Begin PBXFileReference section */
 		4F1B4C122D54854E0067388F /* GTVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTVideoViewController.h; sourceTree = "<group>"; };
 		4F1B4C132D54854E0067388F /* GTVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTVideoViewController.m; sourceTree = "<group>"; };
+		4F1B4C152D54ADEA0067388F /* GTRecommendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTRecommendViewController.h; sourceTree = "<group>"; };
+		4F1B4C162D54ADEA0067388F /* GTRecommendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTRecommendViewController.m; sourceTree = "<group>"; };
 		4FB4962E2923C3E200F97211 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB496312923C3E200F97211 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FB496322923C3E200F97211 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -77,6 +80,8 @@
 				4FB496432923C3E300F97211 /* main.m */,
 				4F1B4C122D54854E0067388F /* GTVideoViewController.h */,
 				4F1B4C132D54854E0067388F /* GTVideoViewController.m */,
+				4F1B4C152D54ADEA0067388F /* GTRecommendViewController.h */,
+				4F1B4C162D54ADEA0067388F /* GTRecommendViewController.m */,
 			);
 			path = SampleApp;
 			sourceTree = "<group>";
@@ -153,6 +158,7 @@
 			files = (
 				4FB496392923C3E200F97211 /* ViewController.m in Sources */,
 				4F1B4C142D54854E0067388F /* GTVideoViewController.m in Sources */,
+				4F1B4C172D54ADEA0067388F /* GTRecommendViewController.m in Sources */,
 				4FB496332923C3E200F97211 /* AppDelegate.m in Sources */,
 				4FB496442923C3E300F97211 /* main.m in Sources */,
 				4FB496362923C3E200F97211 /* SceneDelegate.m in Sources */,
