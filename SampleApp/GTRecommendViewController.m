@@ -7,7 +7,7 @@
 
 #import "GTRecommendViewController.h"
 
-@interface GTRecommendViewController ()
+@interface GTRecommendViewController ()<UIScrollViewDelegate>
 
 @end
 
@@ -30,6 +30,8 @@
     
     scrollView.contentSize = CGSizeMake(self.view.bounds.size.width * 5, self.view.bounds.size.height * 3);
     
+    scrollView.delegate = self;
+    
     NSArray *colorArray = @[[UIColor redColor],[UIColor orangeColor],[UIColor blueColor],[UIColor yellowColor],[UIColor lightGrayColor]];
     
     for (int i = 0; i < 5; i++) {
@@ -45,5 +47,24 @@
     [self.view addSubview:scrollView];
     
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    //NSLog(@"scrollViewDidScroll - x:%@, y:%@", @(scrollView.contentOffset.x), @(scrollView.contentOffset.y));
+};
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    NSLog(@"BeginDragging");
+};
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    NSLog(@"EndDragging");
+};
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    NSLog(@"BeginDecelerating");
+};
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    NSLog(@"EndDecelerating");
+};
 
 @end
