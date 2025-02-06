@@ -49,7 +49,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    //NSLog(@"scrollViewDidScroll - x:%@, y:%@", @(scrollView.contentOffset.x), @(scrollView.contentOffset.y));
+    NSLog(@"scrollViewDidScroll - x:%@, y:%@", @(scrollView.contentOffset.x), @(scrollView.contentOffset.y));
 };
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
