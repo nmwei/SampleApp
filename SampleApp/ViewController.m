@@ -5,6 +5,7 @@
 //  Created by 倪梦威 on 2022/11/15.
 //
 #import "ViewController.h"
+#import "GTNormalTableViewCell.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -53,12 +54,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"id"];
+    GTNormalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"id"];
     if(!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"id"];
+        cell = [[GTNormalTableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"id"];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"主标题 - %@", @(indexPath.row)];
-    cell.detailTextLabel.text = @"副标题";
+    
+
+    [cell layoutTableViewCell];
+    
     return cell;
 }
 
