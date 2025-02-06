@@ -17,11 +17,22 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
-    
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    tableView.translatesAutoresizingMaskIntoConstraints = NO;
     tableView.dataSource = self;
     tableView.delegate = self;
-    [self.view addSubview: tableView];
+    [self.view addSubview:tableView];
+    
+    // 使用 Auto Layout 来设置约束
+    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(tableView);
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|" options:0 metrics:nil views:viewsDictionary]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView]|" options:0 metrics:nil views:viewsDictionary]];
+    
+    // 如果你的视图控制器包含 UITabBar, 需要额外处理底部间距
+    if (self.tabBarController) {
+        UIEdgeInsets tabSafeAreaInsets = self.tabBarController.tabBar.safeAreaInsets;
+        [tableView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-tabSafeAreaInsets.bottom].active = YES;
+    }
     
 }
 
