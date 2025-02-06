@@ -24,17 +24,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    // Do any additional setup after loading the view.
+    
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    scrollView.backgroundColor = [UIColor lightGrayColor];
+    
+    scrollView.contentSize = CGSizeMake(self.view.bounds.size.width * 5, self.view.bounds.size.height * 3);
+    
+    NSArray *colorArray = @[[UIColor redColor],[UIColor orangeColor],[UIColor blueColor],[UIColor yellowColor],[UIColor lightGrayColor]];
+    
+    for (int i = 0; i < 5; i++) {
+        [scrollView addSubview:({
+            CGSize size = scrollView.bounds.size;
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(size.width * i, 0, size.width, size.height)];
+            view.backgroundColor = [colorArray objectAtIndex: i];
+            view;
+        })];
+    }
+    
+    scrollView.pagingEnabled = YES;
+    [self.view addSubview:scrollView];
+    
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
