@@ -112,7 +112,10 @@
 }
 
 - (void) deleteButtonClick {
-    NSLog(@"deleteButtonClick");
+    //检查 self.delegate 是否实现了名为 tableViewCell:clickDeleteButton: 的方法，以确保在调用委托方法之前是安全的
+    if(self.delegate && [self.delegate respondsToSelector:@selector(tableViewCell: clickDeleteButton:)]) {
+        [self.delegate tableViewCell:self clickDeleteButton:self.deleteButton];
+    }
 }
 
 
