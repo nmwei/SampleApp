@@ -15,6 +15,7 @@
 @property(nonatomic, strong, readwrite) UILabel *timeLabel;
 
 @property(nonatomic, strong, readwrite) UIImageView *rightImageView;
+@property(nonatomic, strong, readwrite) UIButton *deleteButton;
 
 @end
 
@@ -60,6 +61,14 @@
             self.rightImageView.backgroundColor = [UIColor redColor];
             self.rightImageView.contentMode = UIViewContentModeScaleAspectFit;
             self.rightImageView;
+        })];
+        
+        [self.contentView addSubview:({
+            self.deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(250, 80, 30, 20)];
+            [self.deleteButton setTitle:@"X" forState:UIControlStateNormal]; //普通显示
+            [self.deleteButton setTitle:@"V" forState:UIControlStateHighlighted]; //点击的时候显示
+            self.deleteButton.backgroundColor = [UIColor blueColor];
+            self.deleteButton;
         })];
     }
     return self;
