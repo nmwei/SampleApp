@@ -38,6 +38,13 @@
         [scrollView addSubview:({
             CGSize size = scrollView.bounds.size;
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(size.width * i, 0, size.width, size.height)];
+            [view addSubview: ({
+                UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100, 200, 100, 100)];
+                view.backgroundColor = [UIColor yellowColor];
+                UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(viewClick)];
+                [view addGestureRecognizer:tapGesture];
+                view;
+            })];
             view.backgroundColor = [colorArray objectAtIndex: i];
             view;
         })];
@@ -48,8 +55,12 @@
     
 }
 
+- (void) viewClick {
+    NSLog(@"viewClick");
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSLog(@"scrollViewDidScroll - x:%@, y:%@", @(scrollView.contentOffset.x), @(scrollView.contentOffset.y));
+    //NSLog(@"scrollViewDidScroll - x:%@, y:%@", @(scrollView.contentOffset.x), @(scrollView.contentOffset.y));
 };
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
