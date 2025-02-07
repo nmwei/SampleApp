@@ -10,31 +10,43 @@
 #import "GTDeleteCellView.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate, GTNormalTableViewCellDelegate>
-
+@property(nonatomic, strong, readwrite) UITableView *tableView;
+@property(nonatomic, strong, readwrite) NSMutableArray *dataArray;
 @end
 
 @implementation ViewController
+
+- (instancetype) init {
+    self = [super init];
+    if(self) {
+        _dataArray = @[].mutableCopy;
+        for (int i = 0;i < 20; i++) {
+            [_dataArray addObject:@(i)];
+        }
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    tableView.translatesAutoresizingMaskIntoConstraints = NO;
-    tableView.dataSource = self;
-    tableView.delegate = self;
-    [self.view addSubview:tableView];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    _tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    [self.view addSubview:_tableView];
     
     // 使用 Auto Layout 来设置约束
-    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(tableView);
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|" options:0 metrics:nil views:viewsDictionary]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView]|" options:0 metrics:nil views:viewsDictionary]];
+    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(_tableView);
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_tableView]|" options:0 metrics:nil views:viewsDictionary]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_tableView]|" options:0 metrics:nil views:viewsDictionary]];
     
     // 如果你的视图控制器包含 UITabBar, 需要额外处理底部间距
     if (self.tabBarController) {
         UIEdgeInsets tabSafeAreaInsets = self.tabBarController.tabBar.safeAreaInsets;
-        [tableView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-tabSafeAreaInsets.bottom].active = YES;
+        [self.tableView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-tabSafeAreaInsets.bottom].active = YES;
     }
     
 }
@@ -51,7 +63,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return _dataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -71,8 +83,12 @@
 - (void) tableViewCell: (UITableViewCell *) tableViewCell clickDeleteButton: (UIButton *) deleteButton {
     GTDeleteCellView *deleteView = [[GTDeleteCellView alloc] initWithFrame:self.view.frame];
     CGRect rect = [tableViewCell convertRect:deleteButton.frame toView:nil]; //将deleteButton坐标系转化为Window的坐标系
+    
+    __weak typeof (self) wself = self; //创建一个弱引用。弱引用不会增加对象的引用计数，因此不会阻止对象被释放
     [deleteView showDeleteViewFromPoint:rect.origin clickBlock:^{
-        NSLog(@"删除弹窗");
+        __strong typeof(self)strongSelf = wself; // 创建一个强引用。强引用会增加对象的引用计数，直到引用计数为零时，对象才会被销毁
+        [strongSelf.dataArray removeLastObject];
+        [strongSelf.tableView deleteRowsAtIndexPaths:@[[strongSelf.tableView indexPathForCell: tableViewCell]] withRowAnimation:(UITableViewRowAnimationAutomatic)];
     }];
 }
 @end
