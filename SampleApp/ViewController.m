@@ -7,6 +7,7 @@
 #import "ViewController.h"
 #import "GTNormalTableViewCell.h"
 #import "GTDetailViewController.h"
+#import "GTDeleteCellView.h"
 
 @interface ViewController ()<UITableViewDataSource, UITableViewDelegate, GTNormalTableViewCellDelegate>
 
@@ -68,6 +69,7 @@
 }
 
 - (void) tableViewCell: (UITableViewCell *) tableViewCell clickDeleteButton: (UIButton *) deleteButton {
-    
+    GTDeleteCellView *deleteView = [[GTDeleteCellView alloc] initWithFrame:self.view.frame];
+    [deleteView showDeleteView];
 }
 @end
