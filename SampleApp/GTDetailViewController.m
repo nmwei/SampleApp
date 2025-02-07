@@ -10,10 +10,15 @@
 
 @interface GTDetailViewController ()<WKNavigationDelegate>
 @property (nonatomic, strong, readwrite) WKWebView *webView;
+@property (nonatomic, strong, readwrite) UIProgressView *progressView;
 
 @end
 
 @implementation GTDetailViewController
+
+- (void) dealloc {
+    [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,10 +27,23 @@
         self.webView.navigationDelegate = self;
         self.webView;
     })];
+    
+    [self.view addSubview:({
+        self.progressView = [[UIProgressView alloc] initWithFrame: CGRectMake(0, 95, self.view.frame.size.width, 10)];
+        self.progressView;
+    })];
 
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://time.geekbang.org/"]]];
     
+    [self.webView addObserver:self forKeyPath:@"estimatedProgress" options: NSKeyValueObservingOptionNew context:nil];
+    
 }
+
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    self.progressView.progress = self.webView.estimatedProgress;
+}
+
+
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
     decisionHandler(WKNavigationResponsePolicyAllow);

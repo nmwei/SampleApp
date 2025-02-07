@@ -65,12 +65,12 @@
     }
     
     UINavigationController *n1 = [[UINavigationController alloc] initWithRootViewController: tabBarController];
-    n1.view.backgroundColor = [UIColor redColor];
+    // n1.view.backgroundColor = [UIColor redColor];
     n1.tabBarItem.title = @"新闻";
     
     if (@available(iOS 15.0, *)) {
         UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
-        appearance.backgroundColor = [UIColor blueColor]; //背景颜色
+        // appearance.backgroundColor = [UIColor blueColor]; //背景颜色
 
         appearance.titleTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20],NSForegroundColorAttributeName:[UIColor whiteColor]}; //字体样式
 
