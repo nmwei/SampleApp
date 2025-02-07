@@ -14,6 +14,7 @@
 @property(nonatomic, strong, readwrite) UILabel *commendLabel;
 @property(nonatomic, strong, readwrite) UILabel *timeLabel;
 
+@property(nonatomic, strong, readwrite) UIImageView *rightImageView;
 
 @end
 
@@ -54,6 +55,12 @@
             self.timeLabel;
         })];
         
+        [self.contentView addSubview:({
+            self.rightImageView = [[UIImageView alloc] initWithFrame:CGRectMake(300, 15, 70, 70)];
+            self.rightImageView.backgroundColor = [UIColor redColor];
+            self.rightImageView.contentMode = UIViewContentModeScaleAspectFit;
+            self.rightImageView;
+        })];
     }
     return self;
 }
@@ -90,6 +97,8 @@
         self.timeLabel.frame.size.width,
         self.timeLabel.frame.size.height
     );
+    
+    self.rightImageView.image = [UIImage imageNamed:@"icon.bundle/timg.jpeg"];
 }
 
 
