@@ -68,6 +68,12 @@
             [self.deleteButton setTitle:@"X" forState:UIControlStateNormal]; //普通显示
             [self.deleteButton setTitle:@"V" forState:UIControlStateHighlighted]; //点击的时候显示
             [self.deleteButton addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
+            
+            self.deleteButton.layer.cornerRadius = 10;
+            self.deleteButton.layer.masksToBounds = YES; //子视图如果超出了父视图,超出部分不可见
+            self.deleteButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+            self.deleteButton.layer.borderWidth = 2;
+            
             self.deleteButton.backgroundColor = [UIColor blueColor];
             self.deleteButton;
         })];
