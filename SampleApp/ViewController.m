@@ -70,6 +70,9 @@
 
 - (void) tableViewCell: (UITableViewCell *) tableViewCell clickDeleteButton: (UIButton *) deleteButton {
     GTDeleteCellView *deleteView = [[GTDeleteCellView alloc] initWithFrame:self.view.frame];
-    [deleteView showDeleteView];
+    CGRect rect = [tableViewCell convertRect:deleteButton.frame toView:nil]; //将deleteButton坐标系转化为Window的坐标系
+    [deleteView showDeleteViewFromPoint:rect.origin clickBlock:^{
+        NSLog(@"删除弹窗");
+    }];
 }
 @end

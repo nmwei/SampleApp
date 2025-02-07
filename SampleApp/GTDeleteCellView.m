@@ -11,6 +11,7 @@
 
 @property(nonatomic, strong, readwrite) UIView *backgroundView;
 @property(nonatomic, strong, readwrite) UIButton *deleteButton;
+@property(nonatomic, copy, readwrite) dispatch_block_t deleteBlock;
 
 @end
 
@@ -40,7 +41,10 @@
     return  self;
 }
 
--(void) showDeleteView {
+-(void) showDeleteViewFromPoint:(CGPoint) point clickBlock: (dispatch_block_t) clickBlock{
+    _deleteButton.frame = CGRectMake(point.x, point.y, 0, 0);
+    _deleteBlock = [clickBlock copy];
+    
     //将当前view添加到Window上
     [UIApplication.sharedApplication.windows.firstObject addSubview:self];
     
@@ -61,6 +65,9 @@
 }
 
 -(void) _clickButton {
+    if(_deleteBlock) {
+        _deleteBlock();
+    }
     [self removeFromSuperview];
 }
 
