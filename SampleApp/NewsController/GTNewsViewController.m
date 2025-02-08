@@ -8,10 +8,12 @@
 #import "GTNormalTableViewCell.h"
 #import "GTDetailViewController.h"
 #import "GTDeleteCellView.h"
+#import "GTListLoader.h"
 
 @interface GTNewsViewController ()<UITableViewDataSource, UITableViewDelegate, GTNormalTableViewCellDelegate>
 @property(nonatomic, strong, readwrite) UITableView *tableView;
 @property(nonatomic, strong, readwrite) NSMutableArray *dataArray;
+@property(nonatomic, strong, readwrite) GTListLoader *listLoader;
 @end
 
 @implementation GTNewsViewController
@@ -50,6 +52,9 @@
         UIEdgeInsets tabSafeAreaInsets = self.tabBarController.tabBar.safeAreaInsets;
         [self.tableView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-tabSafeAreaInsets.bottom].active = YES;
     }
+    
+    self.listLoader = [[GTListLoader alloc] init];
+    [self.listLoader loadListData];
     
 }
 
