@@ -1,20 +1,22 @@
 //
-//  ViewController.m
+//  GTNewsViewController.m
 //  SampleApp
 //
 //  Created by 倪梦威 on 2022/11/15.
 //
-#import "ViewController.h"
+#import "GTNewsViewController.h"
 #import "GTNormalTableViewCell.h"
 #import "GTDetailViewController.h"
 #import "GTDeleteCellView.h"
 
-@interface ViewController ()<UITableViewDataSource, UITableViewDelegate, GTNormalTableViewCellDelegate>
+@interface GTNewsViewController ()<UITableViewDataSource, UITableViewDelegate, GTNormalTableViewCellDelegate>
 @property(nonatomic, strong, readwrite) UITableView *tableView;
 @property(nonatomic, strong, readwrite) NSMutableArray *dataArray;
 @end
 
-@implementation ViewController
+@implementation GTNewsViewController
+
+#pragma mark - lefe cycle
 
 - (instancetype) init {
     self = [super init];
@@ -51,6 +53,8 @@
     
 }
 
+#pragma mark - UITableViewDelegate
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;
 }
@@ -83,6 +87,7 @@
 - (void) tableViewCell: (UITableViewCell *) tableViewCell clickDeleteButton: (UIButton *) deleteButton {
     GTDeleteCellView *deleteView = [[GTDeleteCellView alloc] initWithFrame:self.view.frame];
     CGRect rect = [tableViewCell convertRect:deleteButton.frame toView:nil]; //将deleteButton坐标系转化为Window的坐标系
+    
     
     __weak typeof (self) wself = self; //创建一个弱引用。弱引用不会增加对象的引用计数，因此不会阻止对象被释放
     [deleteView showDeleteViewFromPoint:rect.origin clickBlock:^{
