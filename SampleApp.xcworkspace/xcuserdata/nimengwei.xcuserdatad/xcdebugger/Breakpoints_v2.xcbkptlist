@@ -7,20 +7,35 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0B41AC84-D5A9-47AB-A31B-82D6EADEEC23"
+            uuid = "66A29D95-CB87-49B1-BA2A-8D7D4A7B9C9D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SampleApp/loader/GTListLoader.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "-loadListData"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "0B41AC84-D5A9-47AB-A31B-82D6EADEEC23 - c58b3e0843ccdd54"
+                  uuid = "66A29D95-CB87-49B1-BA2A-8D7D4A7B9C9D - 21a69a442379fcd2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GTListLoader loadListData]"
+                  moduleName = "SampleApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nimengwei/Code/personal/ios/SampleApp/SampleApp/loader/GTListLoader.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "276">
+               </Location>
+               <Location
+                  uuid = "66A29D95-CB87-49B1-BA2A-8D7D4A7B9C9D - c58b3e0843ccdf44"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -30,42 +45,11 @@
                   urlString = "file:///Users/nimengwei/Code/personal/ios/SampleApp/SampleApp/loader/GTListLoader.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "20"
-                  endingLineNumber = "20"
-                  offsetFromSymbolStart = "60">
-               </Location>
-               <Location
-                  uuid = "0B41AC84-D5A9-47AB-A31B-82D6EADEEC23 - 7a0fde9d4df72146"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__28-[GTListLoader loadListData]_block_invoke_2"
-                  moduleName = "SampleApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nimengwei/Code/personal/ios/SampleApp/SampleApp/loader/GTListLoader.m"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "84">
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "200">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "15ABB1D9-AADE-414B-A3A7-E58CD2AC2976"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SampleApp/loader/GTListLoader.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "-loadListData"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
