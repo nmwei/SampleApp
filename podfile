@@ -1,0 +1,5 @@
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+
+target 'SampleApp' do
+    pod 'AFNetworking'
+end
