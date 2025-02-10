@@ -83,6 +83,7 @@
     GTNormalTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"id"];
     if(!cell) {
         cell = [[GTNormalTableViewCell alloc] initWithStyle:(UITableViewCellStyleSubtitle) reuseIdentifier:@"id"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
     }
     

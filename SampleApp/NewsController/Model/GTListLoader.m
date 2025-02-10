@@ -77,18 +77,19 @@
     NSData *listData = [NSKeyedArchiver archivedDataWithRootObject:array requiringSecureCoding:YES error:nil];
     //创建list文件
     [fileManager createFileAtPath:listDataPath contents:listData attributes:nil];
-  
-    NSData *readListData = [fileManager contentsAtPath:listDataPath];
+    
+    
+//    NSData *readListData = [fileManager contentsAtPath:listDataPath];
     //反序列化
-    id unarchiveObj = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects:[NSArray class], [GTListItem class], nil] fromData:readListData error:nil];
-    
-    // [[NSUserDefaults standardUserDefaults] setObject:@"abc" forKey:@"test"];
-    // NSString *test = [[NSUserDefaults standardUserDefaults] stringForKey:@"test"];
-    
-    
-    [[NSUserDefaults standardUserDefaults] setObject:listData forKey:@"listData"];
-    NSData *testListData = [[NSUserDefaults standardUserDefaults] dataForKey:@"listData"];
-    id unarchiveObj2 = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects:[NSArray class], [GTListItem class], nil] fromData:testListData error:nil];
+//    id unarchiveObj = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects:[NSArray class], [GTListItem class], nil] fromData:readListData error:nil];
+//
+//    // [[NSUserDefaults standardUserDefaults] setObject:@"abc" forKey:@"test"];
+//    // NSString *test = [[NSUserDefaults standardUserDefaults] stringForKey:@"test"];
+//
+//
+//    [[NSUserDefaults standardUserDefaults] setObject:listData forKey:@"listData"];
+//    NSData *testListData = [[NSUserDefaults standardUserDefaults] dataForKey:@"listData"];
+//    id unarchiveObj2 = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects:[NSArray class], [GTListItem class], nil] fromData:testListData error:nil];
     
     //生成abc二进制数据
 //    NSData *listData = [@"abc" dataUsingEncoding:NSUTF8StringEncoding];
@@ -104,8 +105,6 @@
 //    [fileHandler writeData: [@"def" dataUsingEncoding:NSUTF8StringEncoding]];
 //    [fileHandler synchronizeFile];
 //    [fileHandler closeFile];
-    NSLog(@"");
-    
 }
 
 @end
