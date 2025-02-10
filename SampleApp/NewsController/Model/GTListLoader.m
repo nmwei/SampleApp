@@ -79,11 +79,17 @@
     //查询文件
     BOOL fileExist = [fileManager fileExistsAtPath:listDataPath];
     //删除文件
-    if(fileExist) {
-        [fileManager removeItemAtPath:listDataPath error:nil];
-    }
+//    if(fileExist) {
+//        [fileManager removeItemAtPath:listDataPath error:nil];
+//    }
     
+    NSFileHandle *fileHandler = [NSFileHandle fileHandleForUpdatingAtPath:listDataPath];
+    [fileHandler seekToEndOfFile];
+    [fileHandler writeData: [@"def" dataUsingEncoding:NSUTF8StringEncoding]];
+    [fileHandler synchronizeFile];
+    [fileHandler closeFile];
     NSLog(@"");
+    
 }
 
 @end
