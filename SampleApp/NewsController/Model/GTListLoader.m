@@ -76,6 +76,13 @@
     //创建list文件
     [fileManager createFileAtPath:listDataPath contents:listData attributes:nil];
     
+    //查询文件
+    BOOL fileExist = [fileManager fileExistsAtPath:listDataPath];
+    //删除文件
+    if(fileExist) {
+        [fileManager removeItemAtPath:listDataPath error:nil];
+    }
+    
     NSLog(@"");
 }
 
