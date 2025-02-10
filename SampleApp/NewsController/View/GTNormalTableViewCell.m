@@ -57,7 +57,6 @@
         
         [self.contentView addSubview:({
             self.rightImageView = [[UIImageView alloc] initWithFrame:CGRectMake(300, 15, 70, 70)];
-            self.rightImageView.backgroundColor = [UIColor redColor];
             self.rightImageView.contentMode = UIViewContentModeScaleAspectFit;
             self.rightImageView;
         })];
@@ -120,9 +119,15 @@
         self.timeLabel.frame.size.height
     );
   
-# warning
-    // UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:item.picUrl]]];
-    // self.rightImageView.image = image;
+    NSThread *downloadImageThread = [[NSThread alloc]initWithBlock:^{
+        NSString *url = @"https://p5.img.cctvpic.com/photoworkspace/2020/07/19/2020071917201287710.png";
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
+        self.rightImageView.image = image;
+    }];
+    
+    downloadImageThread.name = @"downloadImageThread";
+    [downloadImageThread start];
+    
 }
 
 - (void) deleteButtonClick {
