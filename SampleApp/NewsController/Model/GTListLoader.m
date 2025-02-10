@@ -29,8 +29,9 @@
     NSURLSession *session = [NSURLSession sharedSession]; //使用默认session
 
     //创建sessionDataTask
+    __weak typeof(self) weakSelf = self;
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:listURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
+        __strong typeof(weakSelf) strongSelf = weakSelf;
         NSError *jsonError;
         id jsonObj = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
         
@@ -43,6 +44,8 @@
             [listItemArray addObject:listItem];
         }
         
+        [weakSelf _archiveListDataWithArray:listItemArray.copy];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             if(finishBlock) {
                 finishBlock(error == nil, listItemArray.copy);
@@ -52,10 +55,9 @@
 
     //启动任务
     [dataTask resume];
-    [self _getSanBoxPath];
 }
 
--(void) _getSanBoxPath {
+-(void) _archiveListDataWithArray:(NSArray<GTListItem *> *)array {
     //获取cache文件夹路径
     NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *cachePath = [pathArray firstObject];
@@ -71,23 +73,31 @@
     [fileManager createDirectoryAtPath:dataPath withIntermediateDirectories:YES attributes:nil error:&createError];
     //生成list文件路径
     NSString *listDataPath = [dataPath stringByAppendingPathComponent:@"list"];
-    //生成abc二进制数据
-    NSData *listData = [@"abc" dataUsingEncoding:NSUTF8StringEncoding];
+    //序列化 生成二进制文件
+    NSData *listData = [NSKeyedArchiver archivedDataWithRootObject:array requiringSecureCoding:YES error:nil];
     //创建list文件
     [fileManager createFileAtPath:listDataPath contents:listData attributes:nil];
+  
+    NSData *readListData = [fileManager contentsAtPath:listDataPath];
+    //反序列化
+    id unarchiveObj = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects:[NSArray class], [GTListItem class], nil] fromData:readListData error:nil];
     
+    
+    
+    //生成abc二进制数据
+//    NSData *listData = [@"abc" dataUsingEncoding:NSUTF8StringEncoding];
     //查询文件
-    BOOL fileExist = [fileManager fileExistsAtPath:listDataPath];
+//    BOOL fileExist = [fileManager fileExistsAtPath:listDataPath];
     //删除文件
 //    if(fileExist) {
 //        [fileManager removeItemAtPath:listDataPath error:nil];
 //    }
     
-    NSFileHandle *fileHandler = [NSFileHandle fileHandleForUpdatingAtPath:listDataPath];
-    [fileHandler seekToEndOfFile];
-    [fileHandler writeData: [@"def" dataUsingEncoding:NSUTF8StringEncoding]];
-    [fileHandler synchronizeFile];
-    [fileHandler closeFile];
+//    NSFileHandle *fileHandler = [NSFileHandle fileHandleForUpdatingAtPath:listDataPath];
+//    [fileHandler seekToEndOfFile];
+//    [fileHandler writeData: [@"def" dataUsingEncoding:NSUTF8StringEncoding]];
+//    [fileHandler synchronizeFile];
+//    [fileHandler closeFile];
     NSLog(@"");
     
 }
