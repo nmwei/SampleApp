@@ -82,7 +82,13 @@
     //反序列化
     id unarchiveObj = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects:[NSArray class], [GTListItem class], nil] fromData:readListData error:nil];
     
+    // [[NSUserDefaults standardUserDefaults] setObject:@"abc" forKey:@"test"];
+    // NSString *test = [[NSUserDefaults standardUserDefaults] stringForKey:@"test"];
     
+    
+    [[NSUserDefaults standardUserDefaults] setObject:listData forKey:@"listData"];
+    NSData *testListData = [[NSUserDefaults standardUserDefaults] dataForKey:@"listData"];
+    id unarchiveObj2 = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects:[NSArray class], [GTListItem class], nil] fromData:testListData error:nil];
     
     //生成abc二进制数据
 //    NSData *listData = [@"abc" dataUsingEncoding:NSUTF8StringEncoding];
