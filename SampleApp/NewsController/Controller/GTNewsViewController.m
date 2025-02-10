@@ -9,10 +9,11 @@
 #import "GTDetailViewController.h"
 #import "GTDeleteCellView.h"
 #import "GTListLoader.h"
+#import "GTListItem.h"
 
 @interface GTNewsViewController ()<UITableViewDataSource, UITableViewDelegate, GTNormalTableViewCellDelegate>
 @property(nonatomic, strong, readwrite) UITableView *tableView;
-@property(nonatomic, strong, readwrite) NSMutableArray *dataArray;
+@property(nonatomic, strong, readwrite) NSArray *dataArray;
 @property(nonatomic, strong, readwrite) GTListLoader *listLoader;
 @end
 
@@ -22,12 +23,7 @@
 
 - (instancetype) init {
     self = [super init];
-    if(self) {
-        _dataArray = @[].mutableCopy;
-        for (int i = 0;i < 20; i++) {
-            [_dataArray addObject:@(i)];
-        }
-    }
+    if(self) {}
     return self;
 }
 
@@ -54,7 +50,13 @@
     }
     
     self.listLoader = [[GTListLoader alloc] init];
-    [self.listLoader loadListData];
+    
+    __weak typeof (self) wself = self;
+    [self.listLoader loadListDataWithFinishBlock:^(BOOL success, NSArray<GTListItem *> * _Nonnull dataArray) {
+        __strong typeof(wself)strongSelf = wself;
+        strongSelf.dataArray = dataArray;
+        [strongSelf.tableView reloadData];
+    }];
     
 }
 
@@ -65,7 +67,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    GTDetailViewController *controller = [[GTDetailViewController alloc] init];
+    GTListItem *item = [self.dataArray objectAtIndex:indexPath.row];
+    GTDetailViewController *controller = [[GTDetailViewController alloc] initWithUrlString:item.articleUrl];
     controller.title = [NSString stringWithFormat:@"%@", @(indexPath.row)];
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -83,22 +86,22 @@
         cell.delegate = self;
     }
     
-
-    [cell layoutTableViewCell];
+    
+    [cell layoutTableViewCellWithItem:[self.dataArray objectAtIndex:indexPath.row]];
     
     return cell;
 }
 
 - (void) tableViewCell: (UITableViewCell *) tableViewCell clickDeleteButton: (UIButton *) deleteButton {
-    GTDeleteCellView *deleteView = [[GTDeleteCellView alloc] initWithFrame:self.view.frame];
-    CGRect rect = [tableViewCell convertRect:deleteButton.frame toView:nil]; //将deleteButton坐标系转化为Window的坐标系
-    
-    
-    __weak typeof (self) wself = self; //创建一个弱引用。弱引用不会增加对象的引用计数，因此不会阻止对象被释放
-    [deleteView showDeleteViewFromPoint:rect.origin clickBlock:^{
-        __strong typeof(self)strongSelf = wself; // 创建一个强引用。强引用会增加对象的引用计数，直到引用计数为零时，对象才会被销毁
-        [strongSelf.dataArray removeLastObject];
-        [strongSelf.tableView deleteRowsAtIndexPaths:@[[strongSelf.tableView indexPathForCell: tableViewCell]] withRowAnimation:(UITableViewRowAnimationAutomatic)];
-    }];
+//    GTDeleteCellView *deleteView = [[GTDeleteCellView alloc] initWithFrame:self.view.frame];
+//    CGRect rect = [tableViewCell convertRect:deleteButton.frame toView:nil]; //将deleteButton坐标系转化为Window的坐标系
+//
+//
+//    __weak typeof (self) wself = self; //创建一个弱引用。弱引用不会增加对象的引用计数，因此不会阻止对象被释放
+//    [deleteView showDeleteViewFromPoint:rect.origin clickBlock:^{
+//        __strong typeof(wself)strongSelf = wself; // 创建一个强引用。强引用会增加对象的引用计数，直到引用计数为零时，对象才会被销毁
+//        [strongSelf.dataArray removeLastObject];
+//        [strongSelf.tableView deleteRowsAtIndexPaths:@[[strongSelf.tableView indexPathForCell: tableViewCell]] withRowAnimation:(UITableViewRowAnimationAutomatic)];
+//    }];
 }
 @end

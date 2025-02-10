@@ -9,6 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class GTListItem;
+
+
+/// 点击删除按钮
 @protocol GTNormalTableViewCellDelegate <NSObject>
 
 // 任何遵守 GTNormalTableViewCellDelegate 协议的类都必须实现这个方法。这个方法接受两个参数：
@@ -20,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GTNormalTableViewCell : UITableViewCell
 @property(nonatomic, weak, readwrite) id<GTNormalTableViewCellDelegate> delegate;
 
-- (void) layoutTableViewCell;
+- (void) layoutTableViewCellWithItem:(GTListItem *)item;
 
 @end
 

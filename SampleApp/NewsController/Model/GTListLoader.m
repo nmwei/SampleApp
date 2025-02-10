@@ -11,7 +11,7 @@
 
 @implementation GTListLoader
 
--(void) loadListData {
+-(void) loadListDataWithFinishBlock:(GTListLoaderFinishBlock) finishBlock {
     NSString *urlString = @"https://static001.geekbang.org/univer/classes/ios_dev/lession/45/toutiao.json";
     
 //    [[AFHTTPSessionManager manager]GET:urlString parameters:nil headers:nil progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -42,7 +42,12 @@
             [listItem configWithDictionary:info];
             [listItemArray addObject:listItem];
         }
-        NSLog(@"");
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(finishBlock) {
+                finishBlock(error == nil, listItemArray.copy);
+            }
+        });
     }];
 
     //启动任务
