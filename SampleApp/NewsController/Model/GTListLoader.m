@@ -52,6 +52,13 @@
 
     //启动任务
     [dataTask resume];
+    [self _getSanBoxPath];
+}
+
+-(void) _getSanBoxPath {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSLog(@"");
 }
 
 @end
