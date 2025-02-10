@@ -68,13 +68,10 @@
 		4F1B4C272D56F4D80067388F /* NewsController */ = {
 			isa = PBXGroup;
 			children = (
+				4F74CC7E2D5996DD00C63695 /* Controller */,
+				4F74CC7D2D5996B400C63695 /* View */,
+				4F74CC7C2D59968600C63695 /* Model */,
 				4F1B4C282D56F5700067388F /* detail */,
-				4FB496372923C3E200F97211 /* GTNewsViewController.h */,
-				4FB496382923C3E200F97211 /* GTNewsViewController.m */,
-				4F1B4C182D54C92F0067388F /* GTNormalTableViewCell.h */,
-				4F1B4C192D54C92F0067388F /* GTNormalTableViewCell.m */,
-				4F1B4C242D56033E0067388F /* GTDeleteCellView.h */,
-				4F1B4C252D56033E0067388F /* GTDeleteCellView.m */,
 			);
 			path = NewsController;
 			sourceTree = "<group>";
@@ -88,13 +85,33 @@
 			path = detail;
 			sourceTree = "<group>";
 		};
-		4F74CC7B2D57045B00C63695 /* loader */ = {
+		4F74CC7C2D59968600C63695 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				4F74CC782D57044D00C63695 /* GTListLoader.h */,
 				4F74CC792D57044D00C63695 /* GTListLoader.m */,
 			);
-			path = loader;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4F74CC7D2D5996B400C63695 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4F1B4C182D54C92F0067388F /* GTNormalTableViewCell.h */,
+				4F1B4C192D54C92F0067388F /* GTNormalTableViewCell.m */,
+				4F1B4C242D56033E0067388F /* GTDeleteCellView.h */,
+				4F1B4C252D56033E0067388F /* GTDeleteCellView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4F74CC7E2D5996DD00C63695 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4FB496372923C3E200F97211 /* GTNewsViewController.h */,
+				4FB496382923C3E200F97211 /* GTNewsViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		4FB496252923C3E200F97211 = {
@@ -118,7 +135,6 @@
 		4FB496302923C3E200F97211 /* SampleApp */ = {
 			isa = PBXGroup;
 			children = (
-				4F74CC7B2D57045B00C63695 /* loader */,
 				4F1B4C272D56F4D80067388F /* NewsController */,
 				4FB496312923C3E200F97211 /* AppDelegate.h */,
 				4FB496322923C3E200F97211 /* AppDelegate.m */,
@@ -151,7 +167,6 @@
 				4638670C63B3DBF187040C00 /* Pods-SampleApp.debug.xcconfig */,
 				94D1D2DB068B1A773CE4C2A4 /* Pods-SampleApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
