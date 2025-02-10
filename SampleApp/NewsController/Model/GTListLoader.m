@@ -56,7 +56,25 @@
 }
 
 -(void) _getSanBoxPath {
-    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    //获取cache文件夹路径
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachePath = [pathArray firstObject];
+    
+    //获取fileManager单例
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    //生成GTData文件夹路径
+    NSString *dataPath = [cachePath stringByAppendingPathComponent:@"GTData"];
+    
+    NSError *createError;
+    //创建GTData文件夹
+    [fileManager createDirectoryAtPath:dataPath withIntermediateDirectories:YES attributes:nil error:&createError];
+    //生成list文件路径
+    NSString *listDataPath = [dataPath stringByAppendingPathComponent:@"list"];
+    //生成abc二进制数据
+    NSData *listData = [@"abc" dataUsingEncoding:NSUTF8StringEncoding];
+    //创建list文件
+    [fileManager createFileAtPath:listDataPath contents:listData attributes:nil];
     
     NSLog(@"");
 }
