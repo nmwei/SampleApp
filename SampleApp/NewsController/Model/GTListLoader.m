@@ -22,6 +22,11 @@
 //        NSLog(@"");
 //    }];
     
+    NSArray<GTListItem *> *listData = [self _readDataFromLocal];
+    if(listData) {
+        finishBlock(YES, listData.copy);
+    }
+    
     // 创建url
     NSURL *listURL = [NSURL URLWithString:urlString];
 
@@ -57,6 +62,23 @@
     [dataTask resume];
 }
 
+# pragma mark - private method
+-(NSArray<GTListItem *> *) _readDataFromLocal {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachePath = [pathArray firstObject];
+    
+    NSString *listDataPath = [cachePath stringByAppendingPathComponent:@"GTData/list"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSData *readListData = [fileManager contentsAtPath:listDataPath];
+    //反序列化
+    id unarchiveObj = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects:[NSArray class], [GTListItem class], nil] fromData:readListData error:nil];
+    if([unarchiveObj isKindOfClass:[NSArray class]] && [unarchiveObj count] > 0) {
+        return (NSArray<GTListItem *> *)unarchiveObj;
+    }
+    return nil;
+}
+
 -(void) _archiveListDataWithArray:(NSArray<GTListItem *> *)array {
     //获取cache文件夹路径
     NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
@@ -79,9 +101,7 @@
     [fileManager createFileAtPath:listDataPath contents:listData attributes:nil];
     
     
-//    NSData *readListData = [fileManager contentsAtPath:listDataPath];
-    //反序列化
-//    id unarchiveObj = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects:[NSArray class], [GTListItem class], nil] fromData:readListData error:nil];
+
 //
 //    // [[NSUserDefaults standardUserDefaults] setObject:@"abc" forKey:@"test"];
 //    // NSString *test = [[NSUserDefaults standardUserDefaults] stringForKey:@"test"];
