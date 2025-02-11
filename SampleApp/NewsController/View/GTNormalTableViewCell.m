@@ -7,6 +7,7 @@
 
 #import "GTNormalTableViewCell.h"
 #import "GTListItem.h"
+#import "SDWebImage.h"
 
 @interface GTNormalTableViewCell()
 
@@ -129,19 +130,25 @@
 //    [downloadImageThread start];
     
     //获取全局队列
-    dispatch_queue_global_t downloadQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    //获取主队列
-    dispatch_queue_main_t mainQueue = dispatch_get_main_queue();
+//    dispatch_queue_global_t downloadQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    //获取主队列
+//    dispatch_queue_main_t mainQueue = dispatch_get_main_queue();
+//
+//    //在全局队列异步执行加载图片
+//    dispatch_async(downloadQueue, ^{
+//        NSString *url = @"https://p5.img.cctvpic.com/photoworkspace/2020/07/19/2020071917201287710.png";
+//        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
+//        //在主队列异步执行图片显示
+//        dispatch_async(mainQueue, ^{
+//            self.rightImageView.image = image;
+//        });
+//    });
     
-    //在全局队列异步执行加载图片
-    dispatch_async(downloadQueue, ^{
-        NSString *url = @"https://p5.img.cctvpic.com/photoworkspace/2020/07/19/2020071917201287710.png";
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
-        //在主队列异步执行图片显示
-        dispatch_async(mainQueue, ^{
-            self.rightImageView.image = image;
-        });
-    });
+    NSString *url = @"https://p5.img.cctvpic.com/photoworkspace/2020/07/19/2020071917201287710.png";
+    
+    [self.rightImageView sd_setImageWithURL:[NSURL URLWithString:url] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            NSLog(@"");
+    }];
     
 }
 
