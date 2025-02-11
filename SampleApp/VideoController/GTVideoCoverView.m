@@ -45,6 +45,7 @@
 
 -(void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [_videoItem removeObserver:self forKeyPath:@"status"];
 }
 
 #pragma mark - public method
@@ -61,13 +62,12 @@
     NSURL *videoUrl = [NSURL URLWithString:_videoUrl];
     AVAsset *asset = [AVAsset assetWithURL:videoUrl];
     _videoItem = [AVPlayerItem playerItemWithAsset:asset];
+    [_videoItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
     _avPlayer = [AVPlayer playerWithPlayerItem:_videoItem];
     // _avPlayer = [AVPlayer playerWithURL:videoUrl]; 可以使用url直接生成avPlayer
     _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_avPlayer];
     _playerLayer.frame = _coverView.bounds;
     [_coverView.layer addSublayer:_playerLayer];
-    
-    [_avPlayer play];
     NSLog(@"");
 }
 
@@ -75,6 +75,17 @@
     [_playerLayer removeFromSuperlayer];
     _videoItem = nil;
     _avPlayer = nil;
+}
+
+#pragma mark - KVO
+-(void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if([keyPath isEqualToString:@"status"]) {
+        if(((NSNumber *)[change objectForKey:NSKeyValueChangeNewKey]).integerValue == AVPlayerItemStatusReadyToPlay) {
+            [_avPlayer play];
+        } else {
+            NSLog(@"");
+        }
+    }
 }
 
 @end
