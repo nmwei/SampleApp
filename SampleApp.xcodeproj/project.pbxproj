@@ -14,6 +14,7 @@
 		4F1B4C262D56033E0067388F /* GTDeleteCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B4C252D56033E0067388F /* GTDeleteCellView.m */; };
 		4F74CC7A2D57044D00C63695 /* GTListLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F74CC792D57044D00C63695 /* GTListLoader.m */; };
 		4F74CC812D59976400C63695 /* GTListItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F74CC802D59976400C63695 /* GTListItem.m */; };
+		4F74CC852D5B1E2D00C63695 /* GTVideoCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F74CC842D5B1E2D00C63695 /* GTVideoCoverView.m */; };
 		4FB496332923C3E200F97211 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB496322923C3E200F97211 /* AppDelegate.m */; };
 		4FB496362923C3E200F97211 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB496352923C3E200F97211 /* SceneDelegate.m */; };
 		4FB496392923C3E200F97211 /* GTNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB496382923C3E200F97211 /* GTNewsViewController.m */; };
@@ -40,6 +41,8 @@
 		4F74CC792D57044D00C63695 /* GTListLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTListLoader.m; sourceTree = "<group>"; };
 		4F74CC7F2D59976400C63695 /* GTListItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTListItem.h; sourceTree = "<group>"; };
 		4F74CC802D59976400C63695 /* GTListItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTListItem.m; sourceTree = "<group>"; };
+		4F74CC832D5B1E2D00C63695 /* GTVideoCoverView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTVideoCoverView.h; sourceTree = "<group>"; };
+		4F74CC842D5B1E2D00C63695 /* GTVideoCoverView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTVideoCoverView.m; sourceTree = "<group>"; };
 		4FB4962E2923C3E200F97211 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB496312923C3E200F97211 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FB496322923C3E200F97211 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -119,6 +122,17 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		4F74CC822D5B1CCB00C63695 /* VideoController */ = {
+			isa = PBXGroup;
+			children = (
+				4F1B4C122D54854E0067388F /* GTVideoViewController.h */,
+				4F1B4C132D54854E0067388F /* GTVideoViewController.m */,
+				4F74CC832D5B1E2D00C63695 /* GTVideoCoverView.h */,
+				4F74CC842D5B1E2D00C63695 /* GTVideoCoverView.m */,
+			);
+			path = VideoController;
+			sourceTree = "<group>";
+		};
 		4FB496252923C3E200F97211 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +154,7 @@
 		4FB496302923C3E200F97211 /* SampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				4F74CC822D5B1CCB00C63695 /* VideoController */,
 				4F1B4C272D56F4D80067388F /* NewsController */,
 				4FB496312923C3E200F97211 /* AppDelegate.h */,
 				4FB496322923C3E200F97211 /* AppDelegate.m */,
@@ -150,8 +165,6 @@
 				4FB4963F2923C3E300F97211 /* LaunchScreen.storyboard */,
 				4FB496422923C3E300F97211 /* Info.plist */,
 				4FB496432923C3E300F97211 /* main.m */,
-				4F1B4C122D54854E0067388F /* GTVideoViewController.h */,
-				4F1B4C132D54854E0067388F /* GTVideoViewController.m */,
 				4F1B4C152D54ADEA0067388F /* GTRecommendViewController.h */,
 				4F1B4C162D54ADEA0067388F /* GTRecommendViewController.m */,
 			);
@@ -290,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F1B4C1D2D55D9540067388F /* GTDetailViewController.m in Sources */,
+				4F74CC852D5B1E2D00C63695 /* GTVideoCoverView.m in Sources */,
 				4F1B4C262D56033E0067388F /* GTDeleteCellView.m in Sources */,
 				4F1B4C1A2D54C92F0067388F /* GTNormalTableViewCell.m in Sources */,
 				4FB496392923C3E200F97211 /* GTNewsViewController.m in Sources */,
