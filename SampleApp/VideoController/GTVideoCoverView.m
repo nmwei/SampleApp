@@ -46,6 +46,7 @@
 -(void) dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_videoItem removeObserver:self forKeyPath:@"status"];
+    [_videoItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
 }
 
 #pragma mark - public method
@@ -63,7 +64,17 @@
     AVAsset *asset = [AVAsset assetWithURL:videoUrl];
     _videoItem = [AVPlayerItem playerItemWithAsset:asset];
     [_videoItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
+    // 监听缓冲时间
+    [_videoItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
+    
+    CMTime duration = _videoItem.duration;
+    CGFloat videoDuration = CMTimeGetSeconds(duration);
+    
     _avPlayer = [AVPlayer playerWithPlayerItem:_videoItem];
+    
+    [_avPlayer addPeriodicTimeObserverForInterval:CMTimeMake(1, 1) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
+        NSLog(@"播放进度: %@", @(CMTimeGetSeconds(time)));
+    }];
     // _avPlayer = [AVPlayer playerWithURL:videoUrl]; 可以使用url直接生成avPlayer
     _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_avPlayer];
     _playerLayer.frame = _coverView.bounds;
@@ -72,9 +83,12 @@
 }
 
 -(void) _handlePlayEnd {
-    [_playerLayer removeFromSuperlayer];
-    _videoItem = nil;
-    _avPlayer = nil;
+//    [_playerLayer removeFromSuperlayer];
+//    _videoItem = nil;
+//    _avPlayer = nil;
+    //循环播放
+    [_avPlayer seekToTime:CMTimeMake(0, 1)];
+    [_avPlayer play]；
 }
 
 #pragma mark - KVO
@@ -85,6 +99,8 @@
         } else {
             NSLog(@"");
         }
+    } else if([keyPath isEqualToString:@"loadedTimeRanges"]) {
+        NSLog(@"缓冲：%@", [change objectForKey:NSKeyValueChangeNewKey]);
     }
 }
 
