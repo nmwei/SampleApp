@@ -119,14 +119,29 @@
         self.timeLabel.frame.size.height
     );
   
-    NSThread *downloadImageThread = [[NSThread alloc]initWithBlock:^{
+//    NSThread *downloadImageThread = [[NSThread alloc]initWithBlock:^{
+//        NSString *url = @"https://p5.img.cctvpic.com/photoworkspace/2020/07/19/2020071917201287710.png";
+//        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
+//        self.rightImageView.image = image;
+//    }];
+//
+//    downloadImageThread.name = @"downloadImageThread";
+//    [downloadImageThread start];
+    
+    //获取全局队列
+    dispatch_queue_global_t downloadQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    //获取主队列
+    dispatch_queue_main_t mainQueue = dispatch_get_main_queue();
+    
+    //在全局队列异步执行加载图片
+    dispatch_async(downloadQueue, ^{
         NSString *url = @"https://p5.img.cctvpic.com/photoworkspace/2020/07/19/2020071917201287710.png";
         UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:url]]];
-        self.rightImageView.image = image;
-    }];
-    
-    downloadImageThread.name = @"downloadImageThread";
-    [downloadImageThread start];
+        //在主队列异步执行图片显示
+        dispatch_async(mainQueue, ^{
+            self.rightImageView.image = image;
+        });
+    });
     
 }
 
