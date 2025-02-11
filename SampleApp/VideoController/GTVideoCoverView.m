@@ -12,6 +12,9 @@
 
 @property(nonatomic, strong, readwrite) UIImageView *coverView;
 @property(nonatomic, strong, readwrite) UIImageView *playButton;
+@property(nonatomic, strong, readwrite) AVPlayerItem *videoItem;
+@property(nonatomic, strong, readwrite) AVPlayer *avPlayer;
+@property(nonatomic, strong, readwrite) AVPlayerLayer *playerLayer;
 @property(nonatomic, copy, readwrite) NSString *videoUrl;
 
 @end
@@ -33,9 +36,15 @@
         })];
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tapToPlay)];
         [self addGestureRecognizer:tapGesture];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_handlePlayEnd) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
     }
     
     return self;
+}
+
+-(void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - public method
@@ -51,15 +60,21 @@
 - (void)_tapToPlay {
     NSURL *videoUrl = [NSURL URLWithString:_videoUrl];
     AVAsset *asset = [AVAsset assetWithURL:videoUrl];
-    AVPlayerItem *videoItem = [AVPlayerItem playerItemWithAsset:asset];
-    AVPlayer *avPlayer = [AVPlayer playerWithPlayerItem:videoItem];
-//    AVPlayer *avPlayer2 = [AVPlayer playerWithURL:videoUrl]; 可以使用url直接生成avPlayer
-    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:avPlayer];
-    playerLayer.frame = _coverView.bounds;
-    [_coverView.layer addSublayer:playerLayer];
+    _videoItem = [AVPlayerItem playerItemWithAsset:asset];
+    _avPlayer = [AVPlayer playerWithPlayerItem:_videoItem];
+    // _avPlayer = [AVPlayer playerWithURL:videoUrl]; 可以使用url直接生成avPlayer
+    _playerLayer = [AVPlayerLayer playerLayerWithPlayer:_avPlayer];
+    _playerLayer.frame = _coverView.bounds;
+    [_coverView.layer addSublayer:_playerLayer];
     
-    [avPlayer play];
+    [_avPlayer play];
     NSLog(@"");
+}
+
+-(void) _handlePlayEnd {
+    [_playerLayer removeFromSuperlayer];
+    _videoItem = nil;
+    _avPlayer = nil;
 }
 
 @end
