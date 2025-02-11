@@ -53,7 +53,7 @@
     //优先从系统复用回收池取collectionView，如果没有才创建
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"GTVideoCoverView" forIndexPath:indexPath];
     if([cell isKindOfClass: [GTVideoCoverView class]]) {
-        [((GTVideoCoverView *) cell) layoutWithVideoCoverUrl:@"icon.bundle/videoCover@3x.png" videoUrl:@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"];
+        [((GTVideoCoverView *) cell) layoutWithVideoCoverUrl:@"icon.bundle/videoCover@3x.png" videoUrl:@"http://vjs.zencdn.net/v/oceans.mp4"];
     }
     return cell;
 }

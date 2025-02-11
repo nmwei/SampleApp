@@ -6,6 +6,7 @@
 //
 
 #import "GTVideoCoverView.h"
+#import "AVFoundation/AVFoundation.h"
 
 @interface GTVideoCoverView()
 
@@ -26,7 +27,7 @@
             _coverView;
         })];
         
-        [self addSubview:({
+        [_coverView addSubview:({
             _playButton = [[UIImageView alloc] initWithFrame:CGRectMake((size.width - 50) / 2, (size.height - 50) / 2, 50, 50)];
             _playButton;
         })];
@@ -48,6 +49,16 @@
 #pragma mark - private method
 
 - (void)_tapToPlay {
+    NSURL *videoUrl = [NSURL URLWithString:_videoUrl];
+    AVAsset *asset = [AVAsset assetWithURL:videoUrl];
+    AVPlayerItem *videoItem = [AVPlayerItem playerItemWithAsset:asset];
+    AVPlayer *avPlayer = [AVPlayer playerWithPlayerItem:videoItem];
+//    AVPlayer *avPlayer2 = [AVPlayer playerWithURL:videoUrl]; 可以使用url直接生成avPlayer
+    AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:avPlayer];
+    playerLayer.frame = _coverView.bounds;
+    [_coverView.layer addSublayer:playerLayer];
+    
+    [avPlayer play];
     NSLog(@"");
 }
 
