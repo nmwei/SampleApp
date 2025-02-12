@@ -38,6 +38,9 @@
         [scrollView addSubview:({
             CGSize size = scrollView.bounds.size;
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(size.width * i, 0, size.width, size.height)];
+            
+            UIImage *image = [UIImage imageNamed:@"testScale"];
+            
             [view addSubview: ({
                 UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100, 200, 100, 100)];
                 view.backgroundColor = [UIColor yellowColor];
