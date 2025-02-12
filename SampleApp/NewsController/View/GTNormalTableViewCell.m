@@ -8,6 +8,7 @@
 #import "GTNormalTableViewCell.h"
 #import "GTListItem.h"
 #import "SDWebImage.h"
+#import"GTScreen.h"
 
 @interface GTNormalTableViewCell()
 
@@ -27,7 +28,7 @@
     self = [super initWithStyle: style reuseIdentifier: reuseIdentifier];
     if(self) {
         [self.contentView addSubview:({
-            self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 270, 50)];
+            self.titleLabel = [[UILabel alloc] initWithFrame: UIRect(20, 15, 270, 50)];
             self.titleLabel.font = [UIFont systemFontOfSize: 16];
             self.titleLabel.textColor = [UIColor blackColor];
             self.titleLabel.numberOfLines = 2;
@@ -57,13 +58,13 @@
         })];
         
         [self.contentView addSubview:({
-            self.rightImageView = [[UIImageView alloc] initWithFrame:CGRectMake(300, 15, 70, 70)];
+            self.rightImageView = [[UIImageView alloc] initWithFrame:UIRect(300, 15, 70, 70)];
             self.rightImageView.contentMode = UIViewContentModeScaleAspectFit;
             self.rightImageView;
         })];
         
         [self.contentView addSubview:({
-            self.deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(250, 80, 30, 20)];
+            self.deleteButton = [[UIButton alloc] initWithFrame:UIRect(250, 80, 30, 20)];
             [self.deleteButton setTitle:@"X" forState:UIControlStateNormal]; //普通显示
             [self.deleteButton setTitle:@"V" forState:UIControlStateHighlighted]; //点击的时候显示
             [self.deleteButton addTarget:self action:@selector(deleteButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -104,7 +105,7 @@
     
 
     self.commendLabel.frame = CGRectMake(self.sourceLabel.frame.origin.x +
-        self.sourceLabel.frame.size.width + 15,
+        self.sourceLabel.frame.size.width + UI(15),
         70,
         self.commendLabel.frame.size.width,
         self.commendLabel.frame.size.height
@@ -114,7 +115,7 @@
     [self.timeLabel sizeToFit];
     
     self.timeLabel.frame = CGRectMake(self.commendLabel.frame.origin.x +
-        self.commendLabel.frame.size.width + 15,
+        self.commendLabel.frame.size.width + UI(15),
         70,
         self.timeLabel.frame.size.width,
         self.timeLabel.frame.size.height
