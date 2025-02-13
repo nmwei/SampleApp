@@ -43,7 +43,7 @@
             
             [view addSubview: ({
                 UIView *view = [[UIView alloc] initWithFrame:CGRectMake(100, 200, 100, 100)];
-                view.backgroundColor = [UIColor yellowColor];
+                view.backgroundColor = [UIColor blueColor];
                 UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action: @selector(viewClick)];
                 tapGesture.delegate = self;
                 [view addGestureRecognizer:tapGesture];
@@ -59,12 +59,16 @@
     
 }
 
-- (void) viewClick {
-    NSLog(@"viewClick");
+- (void)viewClick {
+    NSURL *urlSchema = [NSURL URLWithString:@"testSchema://"];
+    BOOL canOpenURL = [[UIApplication sharedApplication] canOpenURL:urlSchema];
+    [[UIApplication sharedApplication] openURL:urlSchema options:nil completionHandler:^(BOOL success) {
+        NSLog(@"");
+    }];
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-    return NO;
+    return YES;
 };
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
