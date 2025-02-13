@@ -9,6 +9,7 @@
 #import "GTRecommendViewController.h"
 #import "GTVideoViewController.h"
 #import "SceneDelegate.h"
+#import "GTSplashView.h"
 
 @interface SceneDelegate ()<UITabBarControllerDelegate>
 
@@ -93,6 +94,11 @@
 
     self.window.rootViewController = n1; //将UITabBarController设置为Window的RootViewController
     [self.window makeKeyAndVisible]; // 显示Window
+    
+    [self.window addSubview:({
+        GTSplashView *splashView = [[GTSplashView alloc] initWithFrame:self.window.bounds];
+        splashView;
+    })];
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
