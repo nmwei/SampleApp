@@ -15,7 +15,7 @@
     Class detailCls = NSClassFromString(@"GTDetailViewController");
     
     // GTDetailViewController *controller = [[GTDetailViewController alloc] initWithUrlString:detailUrl];
-    UIViewController *controller = [[detailCls alloc] performSelector:@selector(initWithUrlString:) withObject:detailUrl];
+    UIViewController *controller = [[detailCls alloc] performSelector:NSSelectorFromString(@"initWithUrlString:") withObject:detailUrl];
     
     return controller;
 }
