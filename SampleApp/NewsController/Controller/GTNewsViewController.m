@@ -6,7 +6,7 @@
 //
 #import "GTNewsViewController.h"
 #import "GTNormalTableViewCell.h"
-#import "GTDetailViewController.h"
+#import "GTMediator.h"
 #import "GTDeleteCellView.h"
 #import "GTListLoader.h"
 #import "GTListItem.h"
@@ -68,7 +68,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     GTListItem *item = [self.dataArray objectAtIndex:indexPath.row];
-    GTDetailViewController *controller = [[GTDetailViewController alloc] initWithUrlString:item.articleUrl];
+    
+    __kindof UIViewController *controller = [GTMediator detailViewControllerWithUrl:item.articleUrl];
+    
     controller.title = [NSString stringWithFormat:@"%@", @(indexPath.row)];
     [self.navigationController pushViewController:controller animated:YES];
     
