@@ -10,6 +10,8 @@
 #import "GTVideoViewController.h"
 #import "SceneDelegate.h"
 #import "GTSplashView.h"
+#import "GTStiticTest.h"
+#import "GTFramework/GTFrameworkTest.h"
 
 @interface SceneDelegate ()<UITabBarControllerDelegate>
 
@@ -99,6 +101,12 @@
         GTSplashView *splashView = [[GTSplashView alloc] initWithFrame:self.window.bounds];
         splashView;
     })];
+    
+    //static
+    // [[GTStiticTest alloc] init];
+    
+    //framework
+    // [[GTFrameworkTest alloc] init];
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
