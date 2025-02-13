@@ -20,16 +20,22 @@
 @implementation GTDetailViewController
 
 + (void) load {
-    [GTMediator registerScheme:@"detail://" processBlock:^(NSDictionary * _Nonnull params) {
-        NSString *url = (NSString *)[params objectForKey:@"url"];
-        UINavigationController *navigationController = (UINavigationController *)[params objectForKey: @"controller"];
-        
-        GTDetailViewController *controller = [[GTDetailViewController alloc]initWithUrlString:url];
-                
-//        controller.title = [NSString stringWithFormat:@"%@", @(indexPath.row)];
-        [navigationController pushViewController:controller animated:YES];
-    }];
+//    [GTMediator registerScheme:@"detail://" processBlock:^(NSDictionary * _Nonnull params) {
+//        NSString *url = (NSString *)[params objectForKey:@"url"];
+//        UINavigationController *navigationController = (UINavigationController *)[params objectForKey: @"controller"];
+//
+//        GTDetailViewController *controller = [[GTDetailViewController alloc]initWithUrlString:url];
+//
+////        controller.title = [NSString stringWithFormat:@"%@", @(indexPath.row)];
+//        [navigationController pushViewController:controller animated:YES];
+//    }];
+    [GTMediator registerProtol:@protocol(GTDetailViewControllerProtocal) class:[self class]];
 }
+
+-(UIViewController *)detailViewControllerWithUrl:(NSString *)detailUrl{
+    return [self initWithUrlString:detailUrl];
+}
+
 
 - (void) dealloc {
     [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
