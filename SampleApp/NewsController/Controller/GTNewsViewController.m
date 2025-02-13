@@ -69,10 +69,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     GTListItem *item = [self.dataArray objectAtIndex:indexPath.row];
     
-    __kindof UIViewController *controller = [GTMediator detailViewControllerWithUrl:item.articleUrl];
+//    __kindof UIViewController *controller = [GTMediator detailViewControllerWithUrl:item.articleUrl];
+//    controller.title = [NSString stringWithFormat:@"%@", @(indexPath.row)];
+//    [self.navigationController pushViewController:controller animated:YES];
     
-    controller.title = [NSString stringWithFormat:@"%@", @(indexPath.row)];
-    [self.navigationController pushViewController:controller animated:YES];
+    [GTMediator openUrl:@"detail://" params:@{@"url": item.articleUrl, @"controller": self.navigationController}];
     
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:item.uniquekey];
 }

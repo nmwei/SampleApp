@@ -13,6 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (__kindof UIViewController *) detailViewControllerWithUrl:(NSString *) detailUrl;
 
+//urlscheme
+typedef void(^GTMediatorProcessBlock)(NSDictionary *params);
++(void)registerScheme:(NSString *)scheme processBlock: (GTMediatorProcessBlock)processBlock;
++(void)openUrl:(NSString *)url params:(NSDictionary *)params;
+
 @end
 
 NS_ASSUME_NONNULL_END
