@@ -107,6 +107,8 @@
     
     //framework
     // [[GTFrameworkTest alloc] init];
+    [self _caughtException];
+    [@[].mutableCopy addObject:nil];
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
@@ -154,4 +156,22 @@
     }
 }
 
+-(void) _caughtException{
+    //NSException
+    NSSetUncaughtExceptionHandler(HandleNSException);
+    
+    //signal
+    signal(SIGABRT, SignalExceptionHandler);
+    signal(SIGILL, SignalExceptionHandler);
+    signal(SIGSEGV, SignalExceptionHandler);
+    signal(SIGFPE, SignalExceptionHandler);
+    signal(SIGBUS, SignalExceptionHandler);
+    signal(SIGPIPE, SignalExceptionHandler);
+}
+
+void HandleNSException(NSException *exception){
+    __unused NSString *reason = [exception reason];
+    __unused NSString *name = [exception name];
+    // 存储crash信息
+}
 @end
