@@ -12,6 +12,7 @@
 #import "GTSplashView.h"
 #import "GTStiticTest.h"
 #import "GTFramework/GTFrameworkTest.h"
+#include "execinfo.h"
 
 @interface SceneDelegate ()<UITabBarControllerDelegate>
 
@@ -167,6 +168,19 @@
     signal(SIGFPE, SignalExceptionHandler);
     signal(SIGBUS, SignalExceptionHandler);
     signal(SIGPIPE, SignalExceptionHandler);
+}
+
+void SignalExceptionHandler(int signal) {
+    void *callstack[128];
+    int frames = backtrace(callstack, 128);
+    char **strs = backtrace_symbols(callstack, frames);
+    NSMutableArray *backtrace = [NSMutableArray arrayWithCapacity:frames];
+    for(int i = 0; i < frames; i++){
+        [backtrace addObject: [NSString stringWithUTF8String:strs[i]]];
+    }
+    free(strs);
+    // 存储crash信息
+    
 }
 
 void HandleNSException(NSException *exception){
