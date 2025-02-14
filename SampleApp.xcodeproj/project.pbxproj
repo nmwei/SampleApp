@@ -31,6 +31,7 @@
 		4FB4963E2923C3E300F97211 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4963D2923C3E300F97211 /* Assets.xcassets */; };
 		4FB496412923C3E300F97211 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4963F2923C3E300F97211 /* LaunchScreen.storyboard */; };
 		4FB496442923C3E300F97211 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB496432923C3E300F97211 /* main.m */; };
+		79524F027653D4A783AD0B12 /* libPods-SampleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7567C9D276F8F71EBC5A9645 /* libPods-SampleApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -92,6 +93,7 @@
 		4FB496402923C3E300F97211 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4FB496422923C3E300F97211 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FB496432923C3E300F97211 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7567C9D276F8F71EBC5A9645 /* libPods-SampleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SampleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		94D1D2DB068B1A773CE4C2A4 /* Pods-SampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleApp.release.xcconfig"; path = "Target Support Files/Pods-SampleApp/Pods-SampleApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,12 +104,21 @@
 			files = (
 				4F74CD092D5E221400C63695 /* GTFramework.framework in Frameworks */,
 				4F74CCDE2D5DFD9900C63695 /* libGTStaic.a in Frameworks */,
+				79524F027653D4A783AD0B12 /* libPods-SampleApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04C9693308D68FA10FF9EC4E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7567C9D276F8F71EBC5A9645 /* libPods-SampleApp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4F1B4C272D56F4D80067388F /* NewsController */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +203,7 @@
 				4FB496302923C3E200F97211 /* SampleApp */,
 				4FB4962F2923C3E200F97211 /* Products */,
 				CE030F73CF2BEB4937DDCDD8 /* Pods */,
+				04C9693308D68FA10FF9EC4E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
