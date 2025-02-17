@@ -12,6 +12,7 @@
 #import "GTListItem.h"
 #import "GTSearchBar.h"
 #import "GTScreen.h"
+#import "GTCommentManager.h"
 
 @interface GTNewsViewController ()<UITableViewDataSource, UITableViewDelegate, GTNormalTableViewCellDelegate>
 @property(nonatomic, strong, readwrite) UITableView *tableView;
@@ -64,8 +65,12 @@
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.tabBarController.navigationItem setTitleView:({
-        GTSearchBar *searchBar = [[GTSearchBar alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - UI(20), self.navigationController.navigationBar.bounds.size.height)];
-        searchBar;
+//        GTSearchBar *searchBar = [[GTSearchBar alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - UI(20), self.navigationController.navigationBar.bounds.size.height)];
+//        searchBar;
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - UI(20), self.navigationController.navigationBar.bounds.size.height)];
+        button.backgroundColor = [UIColor lightGrayColor];
+        [button addTarget:self action:@selector(_showCommentView) forControlEvents:UIControlEventTouchUpInside];
+        button;
     })];
     
 }
@@ -122,4 +127,10 @@
 //        [strongSelf.tableView deleteRowsAtIndexPaths:@[[strongSelf.tableView indexPathForCell: tableViewCell]] withRowAnimation:(UITableViewRowAnimationAutomatic)];
 //    }];
 }
+
+#pragma mark -
+-(void) _showCommentView{
+    [[GTCommentManager shareManager] showCommentView];
+}
+
 @end

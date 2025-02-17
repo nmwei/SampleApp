@@ -28,6 +28,7 @@
 		4F74CD112D62E01700C63695 /* GTNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F74CD102D62E01700C63695 /* GTNotification.m */; };
 		4F74CD142D631C1000C63695 /* ICONBLACK.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F74CD132D631C1000C63695 /* ICONBLACK.png */; };
 		4F74CD172D63320200C63695 /* GTSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F74CD162D63320200C63695 /* GTSearchBar.m */; };
+		4F74CD1A2D633CE900C63695 /* GTCommentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F74CD192D633CE900C63695 /* GTCommentManager.m */; };
 		4FB496332923C3E200F97211 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB496322923C3E200F97211 /* AppDelegate.m */; };
 		4FB496362923C3E200F97211 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB496352923C3E200F97211 /* SceneDelegate.m */; };
 		4FB496392923C3E200F97211 /* GTNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB496382923C3E200F97211 /* GTNewsViewController.m */; };
@@ -91,6 +92,8 @@
 		4F74CD132D631C1000C63695 /* ICONBLACK.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ICONBLACK.png; path = "../../../../../../Downloads/geektime-ios-course-master/project/SampleApp/AlternateIcons/ICONBLACK.png"; sourceTree = "<group>"; };
 		4F74CD152D63320200C63695 /* GTSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTSearchBar.h; sourceTree = "<group>"; };
 		4F74CD162D63320200C63695 /* GTSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTSearchBar.m; sourceTree = "<group>"; };
+		4F74CD182D633CE900C63695 /* GTCommentManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTCommentManager.h; sourceTree = "<group>"; };
+		4F74CD192D633CE900C63695 /* GTCommentManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTCommentManager.m; sourceTree = "<group>"; };
 		4FB4962E2923C3E200F97211 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB496312923C3E200F97211 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FB496322923C3E200F97211 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 				4F1B4C252D56033E0067388F /* GTDeleteCellView.m */,
 				4F74CD152D63320200C63695 /* GTSearchBar.h */,
 				4F74CD162D63320200C63695 /* GTSearchBar.m */,
+				4F74CD182D633CE900C63695 /* GTCommentManager.h */,
+				4F74CD192D633CE900C63695 /* GTCommentManager.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 				4F74CD112D62E01700C63695 /* GTNotification.m in Sources */,
 				4FB496332923C3E200F97211 /* AppDelegate.m in Sources */,
 				4FB496442923C3E300F97211 /* main.m in Sources */,
+				4F74CD1A2D633CE900C63695 /* GTCommentManager.m in Sources */,
 				4FB496362923C3E200F97211 /* SceneDelegate.m in Sources */,
 				4F74CC882D5B51FD00C63695 /* GTVideoPlayer.m in Sources */,
 			);
