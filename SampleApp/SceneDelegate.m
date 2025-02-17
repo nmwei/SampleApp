@@ -116,6 +116,8 @@
     [[GTLocation locationManager] checkLocationAuthorization];
     //app启动的时候，检查通知权限
     [[GTNotification notificationManager] checkNotificationAuthorization];
+    
+//    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
