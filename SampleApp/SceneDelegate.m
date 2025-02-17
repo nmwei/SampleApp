@@ -14,6 +14,7 @@
 #import "GTFramework/GTFrameworkTest.h"
 #include "execinfo.h"
 #import "GTLocation.h"
+#import "GTNotification.h"
 
 @interface SceneDelegate ()<UITabBarControllerDelegate>
 
@@ -111,8 +112,10 @@
     // [[GTFrameworkTest alloc] init];
     [self _caughtException];
     // [@[].mutableCopy addObject:nil];
-    
+    //app启动的时候，检查定位权限
     [[GTLocation locationManager] checkLocationAuthorization];
+    //app启动的时候，检查通知权限
+    [[GTNotification notificationManager] checkNotificationAuthorization];
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
