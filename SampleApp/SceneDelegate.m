@@ -13,6 +13,7 @@
 #import "GTStiticTest.h"
 #import "GTFramework/GTFrameworkTest.h"
 #include "execinfo.h"
+#import "GTLocation.h"
 
 @interface SceneDelegate ()<UITabBarControllerDelegate>
 
@@ -110,6 +111,8 @@
     // [[GTFrameworkTest alloc] init];
     [self _caughtException];
     // [@[].mutableCopy addObject:nil];
+    
+    [[GTLocation locationManager] checkLocationAuthorization];
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
