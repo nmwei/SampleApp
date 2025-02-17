@@ -122,6 +122,9 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     NSLog(@"did selected");
+    
+    [self _changeIcon];
+    
 }
 
 // 连接到会话时
@@ -195,5 +198,14 @@ void HandleNSException(NSException *exception){
     __unused NSString *reason = [exception reason];
     __unused NSString *name = [exception name];
     // 存储crash信息
+}
+
+#pragma mark - 图标动态替换
+-(void) _changeIcon{
+    if([UIApplication sharedApplication].supportsAlternateIcons) {
+        [[UIApplication sharedApplication] setAlternateIconName:@"ICONBLACK" completionHandler:^(NSError * _Nullable error) {
+            NSLog(@"替换成功");
+        }];
+    };
 }
 @end
