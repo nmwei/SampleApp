@@ -46,12 +46,27 @@
     }
 }
 
+#pragma mark - delegate
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     if(status == kCLAuthorizationStatusAuthorizedWhenInUse) {
         //监听状态变成允许
+        [self.manager startUpdatingLocation];
     } else if(status == kCLAuthorizationStatusDenied) {
         // 监听拒绝定位
     }
+};
+
+- (void)locationManager:(CLLocationManager *)manager
+     didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    //地理位置
+    CLLocation *location = [locations firstObject];
+    
+    CLGeocoder *coder = [[CLGeocoder alloc] init];
+    [coder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        //地标信息
+    }];
+    
+    [self.manager stopUpdatingLocation];
 };
 
 @end
