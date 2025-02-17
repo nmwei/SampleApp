@@ -9,7 +9,7 @@
 #import "CoreLocation/CoreLocation.h"
 
 
-@interface GTLocation()
+@interface GTLocation()<CLLocationManagerDelegate>
 @property(nonatomic, strong, readwrite) CLLocationManager *manager;
 
 @end
@@ -29,6 +29,7 @@
     self = [super init];
     if(self) {
         self.manager = [[CLLocationManager alloc] init];
+        self.manager.delegate = self;
     }
     return self;
 }
@@ -44,5 +45,13 @@
         [self.manager requestWhenInUseAuthorization];
     }
 }
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    if(status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        //监听状态变成允许
+    } else if(status == kCLAuthorizationStatusDenied) {
+        // 监听拒绝定位
+    }
+};
 
 @end
