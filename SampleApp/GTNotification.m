@@ -5,6 +5,7 @@
 //  Created by 倪梦威 on 2025/2/17.
 //
 
+#import "UIKit/UIKit.h"
 #import "GTNotification.h"
 #import "UserNotifications/UserNotifications.h";
 
@@ -29,7 +30,13 @@
     center.delegate = self;
     [center requestAuthorizationWithOptions:UNAuthorizationOptionBadge | UNAuthorizationOptionSound completionHandler:^(BOOL granted, NSError * _Nullable error) {
         //触发一次本地推送
-        [self _pushLocalNotification];
+        if(granted) {
+//            [self _pushLocalNotification];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[UIApplication sharedApplication] registerForRemoteNotifications];
+            });
+        }
+        
     }];
 };
 
