@@ -9,7 +9,7 @@
 #import "UserNotifications/UserNotifications.h";
 
 
-@interface GTNotification()
+@interface GTNotification()<UNUserNotificationCenterDelegate>
 
 @end
 
@@ -25,9 +25,41 @@
 }
 
 -(void) checkNotificationAuthorization {
-    [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:UNAuthorizationOptionBadge | UNAuthorizationOptionSound completionHandler:^(BOOL granted, NSError * _Nullable error) {
-        NSLog(@"");
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate = self;
+    [center requestAuthorizationWithOptions:UNAuthorizationOptionBadge | UNAuthorizationOptionSound completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        //触发一次本地推送
+        [self _pushLocalNotification];
     }];
 };
+
+#pragma mark - 本地推送
+-(void)_pushLocalNotification{
+    //生成content
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+    content.badge = @(1);
+    content.title = @"极客时间";
+    content.body = @"从0开发一款iOS App";
+    
+    //生成trigger
+    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:30.f repeats:NO];
+    //生成request
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"__pushLocalNotification" content:content trigger:trigger];
+    
+    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        NSLog(@"");
+    }];
+}
+
+#pragma mark -
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
+    completionHandler(UNNotificationPresentationOptionAlert);
+};
+
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)(void))completionHandler{
+    //处理业务逻辑
+    completionHandler();
+};
+
 
 @end
