@@ -203,9 +203,9 @@ void HandleNSException(NSException *exception){
 #pragma mark - 图标动态替换
 -(void) _changeIcon{
     if([UIApplication sharedApplication].supportsAlternateIcons) {
-        [[UIApplication sharedApplication] setAlternateIconName:@"ICONBLACK" completionHandler:^(NSError * _Nullable error) {
-            NSLog(@"替换成功");
-        }];
+//        [[UIApplication sharedApplication] setAlternateIconName:@"ICONBLACK" completionHandler:^(NSError * _Nullable error) {
+//            NSLog(@"替换成功");
+//        }];
     };
 }
 @end
